@@ -1,0 +1,66 @@
+# Core LaTeX auxiliary files
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.nav
+*.snm
+*.vrb
+*.lof
+*.lot
+
+# Bibliography files
+*.bbl
+*.blg
+*.bcf
+*.run.xml
+
+# Intermediate and output files
+*.dvi
+*.xdv
+*.pdfsync
+*.ps
+*.eps
+*-converted-to.*
+
+# Editor backups
+*~
+*.bak
+*.sav
+*.backup
+*.swp
+
+# latexmk build folders
+latex.out/
+_build/
+auto/
+
+# TikZ & PGFPlots auxiliary files
+*.md5
+*.auxlock
+*.dpth
+
+# PythonTeX and minted
+*.pytxcode
+*.pyg
+_minted*
+*.data.minted
+
+# Glossaries
+*.acn
+*.acr
+*.glg
+*.glo
+*.gls
+*.ist
+
+# Others
+*.xdy
+*.tdo
+*.thm
+*.cut
+*.soc
+*.loa

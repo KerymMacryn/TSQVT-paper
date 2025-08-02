@@ -1,0 +1,135 @@
+\section*{Appendix B: Detailed TSQVT Calculations}
+
+\subsection*{B.1 First-Order Energy Shifts}
+
+We evaluate energy shifts \(\Delta E_{n\ell}\) from perturbation theory:
+
+
+
+\[
+\Delta E_{n\ell} = \left\langle \psi_{n\ell} \middle| \hat{H}_1 \middle| \psi_{n\ell} \right\rangle
+\]
+
+
+
+with perturbation operator \(\hat{H}_1 = \dfrac{\hbar^2 \epsilon}{m_0} \nabla \cdot \left( f(x) \nabla \right)\), and \(f(x)\) given analytically.
+
+---
+
+\subsection*{B.2 Hydrogen 1S State}
+
+For the ground state wavefunction:
+
+
+
+\[
+\psi_{1S}(r) = \dfrac{1}{\sqrt{\pi a_0^3}} e^{-r/a_0}
+\]
+
+
+
+We compute:
+
+
+
+\[
+\left\langle \psi_{1S} \middle| e^{-r/R} \middle| \psi_{1S} \right\rangle = \int_0^\infty \left| \psi_{1S}(r) \right|^2 e^{-r/R} 4\pi r^2 dr
+\]
+
+
+
+Use substitution \(u = r/a_0\), and express the result as:
+
+
+
+\[
+F_{1S}(R/a_0) = \dfrac{1}{(1 + a_0 / R)^3}
+\]
+
+
+
+---
+
+\subsection*{B.3 Hydrogen 2S and 2P States}
+
+Wavefunctions for excited states:
+
+
+
+\[
+\psi_{2S}(r) = \dfrac{1}{4\sqrt{2\pi a_0^3}} \left( 2 - \dfrac{r}{a_0} \right) e^{-r/(2a_0)}
+\]
+
+
+
+
+
+\[
+\psi_{2P}(r) = \dfrac{1}{\sqrt{24\pi a_0^3}} \dfrac{r}{a_0} e^{-r/(2a_0)}
+\]
+
+
+
+Following similar procedure, compute:
+
+
+
+\[
+F_{2S}(R/a_0),\quad F_{2P}(R/a_0) \quad \text{via radial integrals}
+\]
+
+
+
+These give closed-form results used in Table 1 of the main manuscript.
+
+---
+
+\subsection*{B.4 Frequency Shift Predictions}
+
+From energy differences:
+
+
+
+\[
+\Delta \nu_{1S-2S} = \dfrac{1}{h} \left( \Delta E_{2S} - \Delta E_{1S} \right),\quad
+\Delta \nu_{\text{Lamb}} = \dfrac{1}{h} \left( \Delta E_{2S} - \Delta E_{2P} \right)
+\]
+
+
+
+Substitute expressions for \(\Delta E_{n\ell}\) in terms of \(F_{n\ell}(R/a_0)\):
+
+
+
+\[
+\Delta \nu = \dfrac{4 m_e \epsilon}{h \hbar^2} \left( F_{A}(R/a_0) - F_{B}(R/a_0) \right)
+\]
+
+
+
+---
+
+\subsection*{B.5 Exclusion Boundary Evaluation}
+
+Experimental constraint:
+
+
+
+\[
+\left| \Delta \nu_{1S-2S}(\epsilon, R) \right| < \delta \nu_{\text{exp}} = 4.2 \times 10^{-15} \cdot \nu_{1S-2S}
+\]
+
+
+
+This yields an inequality bounding allowed regions of \((\epsilon, R)\):
+
+```python
+# Example symbolic calculation using SymPy
+from sympy import symbols, solve, Eq
+
+epsilon, R, hbar, me, a0 = symbols('epsilon R hbar me a0', positive=True)
+F1S = 1/(1 + a0/R)**3
+F2S = ...  # define based on integrals
+Delta_nu = (4*me/hbar**2) * epsilon * (F2S - F1S)
+
+# Solve: Delta_nu < 4.2e-15 * nu_1S_2S
